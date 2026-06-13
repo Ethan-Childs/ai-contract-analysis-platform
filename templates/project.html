@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Contract Analysis Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/project.css') }}" />
+</head>
+<body>
+<div class="page">
+    <h1>AI Contract Analysis Platform</h1>
+
+    <section class="card">
+        <h2>1) Upload Contract</h2>
+        <form id="uploadForm">
+            <input type="file" id="contractFile" name="file" accept=".pdf,.docx,.txt" required />
+            <button type="submit">Process Contract</button>
+        </form>
+        <p id="statusMessage" class="status"></p>
+        <div id="metadataPanel" class="hidden"></div>
+    </section>
+
+    <section class="card">
+        <h2>2) Ask Questions</h2>
+        <textarea id="questionInput" rows="3" placeholder="Ask a question about the processed contract..."></textarea>
+        <button id="askBtn">Ask</button>
+        <div id="answerPanel" class="result-block hidden">
+            <h3>Answer</h3>
+            <p id="answerText"></p>
+            <h3>Supporting Chunks</h3>
+            <div id="chunksList"></div>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>3) Red Flag Analysis</h2>
+        <button id="redflagsBtn">Analyze Red Flags</button>
+        <div id="redflagPanel" class="result-block hidden"></div>
+    </section>
+</div>
+<script>
+    window.INITIAL_KEY = {{ key|tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/project.js') }}"></script>
+</body>
+</html>
